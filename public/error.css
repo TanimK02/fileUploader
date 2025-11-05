@@ -31,3 +31,35 @@
 .errorContainer a:hover {
     background-color: #0056b3;
 }
+
+/* Responsive rules for error page */
+@media (max-width: 900px) {
+    .errorCode {
+        font-size: 72px;
+    }
+
+    .errorMessage {
+        font-size: 20px;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .errorCode {
+        font-size: 48px;
+    }
+
+    .errorMessage {
+        font-size: 16px;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    .errorContainer a {
+        display: inline-block;
+        padding: 10px 16px;
+    }
+}

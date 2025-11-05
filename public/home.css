@@ -108,17 +108,18 @@ button {
     border: 1px dashed #777676;
 }
 
+
 .trash {
     background-image: url("/trash-empty-svgrepo-com.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     grid-column: 3;
-    width: 80%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* fixed icon size so it is always visible */
+    width: 24px;
+    height: 24px;
+    justify-self: center;
+    align-self: center;
     cursor: pointer;
 }
 
@@ -129,11 +130,90 @@ button {
 
 .itemListContainer {
     display: grid;
-    grid-template-columns: 90% 5% 5%;
+    /* content column then two small action columns */
+    grid-template-columns: 1fr 40px 40px;
     background-color: white;
     border-top: 1px solid #CDE0F7;
     border-bottom: 1px solid #CDE0F7;
     align-items: center;
+}
+
+
+
+/* Responsive rules for smaller screens */
+@media (max-width: 900px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .formContainer form {
+        width: 100%;
+    }
+
+    .columnNames,
+    .listItem {
+        grid-template-columns: 1fr 1fr 80px;
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .itemListContainer {
+        grid-template-columns: 1fr 40px;
+    }
+
+    .trash {
+        background-size: 20px 20px;
+    }
+
+    .folderPic {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        padding: 1rem;
+    }
+
+    .filesHeader h2 {
+        font-size: 1.1rem;
+    }
+
+    .columnNames,
+    .listItem {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 6px;
+        padding: 0.6rem;
+    }
+
+    .columnNames p {
+        display: none;
+        /* hide header labels on very small screens */
+    }
+
+    .listItem p.date,
+    .listItem p.size {
+        font-size: 0.9rem;
+        color: #7b8790;
+    }
+
+    .itemListContainer {
+        grid-template-columns: 1fr 40px;
+    }
+
+    .uploadPic {
+        height: 56px;
+        width: 56px;
+    }
+
+    .formContainer label,
+    .formContainer button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
 }
 
 .folderNameLabel {
@@ -196,11 +276,10 @@ button {
     background-size: contain;
     background-position: center;
     grid-column: 3;
-    width: 80%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 24px;
+    height: 24px;
+    justify-self: center;
+    align-self: center;
     cursor: pointer;
 
 }
@@ -216,11 +295,11 @@ button {
     background-size: contain;
     background-position: center;
     grid-column: 2;
-    width: 80%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* fixed icon size so it matches the trash button */
+    width: 20px;
+    height: 20px;
+    justify-self: center;
+    align-self: center;
     cursor: pointer;
 }
 

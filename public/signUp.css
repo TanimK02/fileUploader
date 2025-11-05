@@ -119,3 +119,49 @@ form {
 .footnote a:hover {
     color: #4a91e2dd;
 }
+
+/* Responsive rules for sign-up page */
+@media (max-width: 900px) {
+    .container {
+        width: 80%;
+        padding: 1.5rem 0;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .inputContainer {
+        width: 95%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+
+    .container {
+        width: 100%;
+        border-radius: 10px;
+        padding: 1rem 0.5rem;
+    }
+
+    .brand {
+        font-size: 1.1rem;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    .inputWrapper input {
+        padding: 14px 40px 8px 10px;
+        font-size: 0.95rem;
+    }
+
+    .signUpButton {
+        padding: 8px 0;
+        font-size: 0.9rem;
+    }
+}

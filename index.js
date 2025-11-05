@@ -63,6 +63,6 @@ app.use((err, req, res, next) => {
 app.keepAliveTimeout = 61 * 1000;
 app.headersTimeout = 65 * 1000;
 
-app.listen(10000, '0.0.0.0', () => {
+app.listen(10000, 'localhost', () => {
     console.log("Server is running on http://localhost:10000/users/sign-up");
 });

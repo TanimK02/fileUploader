@@ -129,3 +129,44 @@ form {
     font-size: 0.85rem;
     color: rgba(39, 40, 41, 0.6);
 }
+
+/* Responsive rules for login page */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        width: 95%;
+        height: auto;
+    }
+
+    .pictureDiv {
+        width: 100%;
+        height: 160px;
+        background-position: center;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .formContainer {
+        width: 100%;
+        padding: 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .pictureDiv {
+        display: none;
+        /* hide large image on small devices to save space */
+    }
+
+    .container {
+        border-radius: 10px;
+        padding: 0.5rem;
+    }
+
+    .inputContainer {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+}
