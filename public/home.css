@@ -1,0 +1,230 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.filesHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filesHeader button {
+    background-color: #CDE0F7;
+    border: none;
+    border-radius: 8px;
+    color: #2B8CEE;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.logOut {
+    font-weight: 500;
+}
+
+.container {
+    padding: 1.5rem;
+}
+
+form {
+    height: 100%;
+    width: 100%;
+    border: 1px dashed #ccc;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.uploadPic {
+    height: 70px;
+    width: 70px;
+    background-image: url("/upload-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-top: 0.8rem;
+}
+
+form p:nth-of-type(2) {
+    color: #7c7c7c;
+}
+
+form p:first-of-type {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+}
+
+form p:nth-of-type(2),
+form p:last-of-type {
+    margin-bottom: 1rem;
+}
+
+form label,
+form button {
+    background-color: #4A90E2;
+    color: white;
+    padding: 0.75rem 1.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+
+.columnNames,
+.listItem {
+    display: grid;
+    grid-template-columns: 55% 22% 22%;
+    padding: 1rem;
+    color: #617589;
+    width: 90%;
+}
+
+.listItem:last-of-type {
+    border-bottom: none;
+}
+
+.date,
+.size {
+    color: #617589;
+}
+
+button {
+    cursor: pointer;
+}
+
+.dragover {
+    background-color: #CDE0F7;
+    border: 1px dashed #777676;
+}
+
+.trash {
+    background-image: url("/trash-empty-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    grid-column: 3;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.trash:hover {
+    background-color: #F4F7FA;
+    border-radius: 8px;
+}
+
+.itemListContainer {
+    display: grid;
+    grid-template-columns: 90% 5% 5%;
+    background-color: white;
+    border-top: 1px solid #CDE0F7;
+    border-bottom: 1px solid #CDE0F7;
+    align-items: center;
+}
+
+.folderNameLabel {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    color: black;
+    cursor: default;
+}
+
+.folderInput {
+    width: 40%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.folderDiv {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.folderPic {
+    background-image: url("/open-folder-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    /* preserve aspect ratio and ensure whole icon is visible */
+    background-size: contain;
+    background-position: center;
+    /* give the icon a visible size */
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.parentFolderPic {
+    background-image: url("/back-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
+
+.columnNameContainer {
+    display: grid;
+    grid-template-columns: 90% 5% 5%;
+    align-items: center;
+}
+
+.folderTrash {
+
+    background-image: url("/trash-empty-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    grid-column: 3;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.folderTrash:hover {
+    background-color: #F4F7FA;
+    border-radius: 8px;
+}
+
+.edit {
+    background-image: url("/edit-svgrepo-com.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    grid-column: 2;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.edit:hover {
+    background-color: #F4F7FA;
+    border-radius: 8px;
+}

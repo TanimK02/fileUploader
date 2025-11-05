@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/home.css">
+    <%- include('notoSans') %>
+</head>
+
+<body>
+    <nav>
+        <a href="/">
+            <h1>Uploader</h1>
+        </a>
+        <a href="/users/logout">
+            <p class="logOut">Log Out</p>
+        </a>
+    </nav>
+    <div class="container formContainer">
+        <form action="/<%= folderId %>/fileInput" enctype="multipart/form-data" method="post">
+            <div class="uploadPic"></div>
+            <p>Drag & drop to upload files.</p>
+            <p>or</p>
+            <label id="fileButton" for="fileInput">Browse Files</label>
+            <span id="fileName" style="margin-bottom: 10px; color: #555; text-align: center;">No file chosen</span>
+            <input id="fileInput" type="file" style="display: none;" name="file" />
+            <p style="font-size: 12px; color: #888;">Maximum file size: 5 MB</p>
+            <button id="uploadButton" type="submit" style="display: none;">Upload</button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="filesHeader">
+            <h2>My Files</h2>
+            <a href="/create-folder/<%= folderId %>"><button>New Folder</button></a>
+        </div>
+        <div class="listGrid">
+            <div class="columnNameContainer">
+                <div class="columnNames">
+                    <p>Name</p>
+                    <p>Date Modified</p>
+                    <p>Size</p>
+                </div>
+            </div>
+            <% if (parentFolder && parentFolder.id) { %>
+                <a href="/<%= parentFolder.id %>">
+                    <div class="itemListContainer">
+                        <div class="listItem">
+                            <div class="folderDiv">
+                                <div class="parentFolderPic"></div>
+                                <p>
+                                    .. (Parent Folder)
+                                </p>
+                            </div>
+                            <p class="date"></p>
+                            <p class="size"></p>
+                        </div>
+                    </div>
+                </a>
+                <% } %>
+                    <% files.forEach(function(file) { %>
+                        <div class="itemListContainer">
+                            <a href="/file/<%= file.id %>">
+                                <div class="listItem">
+                                    <p>
+                                        <%= file.name %>
+                                    </p>
+                                    <p class="date">
+                                        <%= file.dateModified %>
+                                    </p>
+                                    <p class="size">
+                                        <%= file.sizeFormatted %>
+                                    </p>
+                                </div>
+                            </a>
+                            <div data-file-id="<%= file.id %>" class="trash"></div>
+                        </div>
+                        <% }); %>
+                            <% folders.forEach(function(folder) { %>
+                                <div class="itemListContainer">
+                                    <a href="/<%= folder.id %>">
+                                        <div class="listItem">
+                                            <div class="folderDiv">
+                                                <div class="folderPic"></div>
+                                                <p>
+                                                    <%= folder.name %>
+                                                </p>
+                                            </div>
+                                            <p class="date">
+                                                <%= folder.dateModified %>
+                                            </p>
+                                            <p class="size">--</p>
+                                        </div>
+                                    </a>
+                                    <div data-file-id="<%= folder.id %>" class="edit"></div>
+                                    <div data-file-id="<%= folder.id %>" class="folderTrash"></div>
+                                </div>
+                                <% }); %>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const fileInput = document.getElementById("fileInput");
+    const fileButton = document.getElementById("fileButton");
+    const fileName = document.getElementById("fileName");
+    const uploadButton = document.getElementById("uploadButton");
+    const form = document.querySelector("form");
+
+    const MAX_SIZE = 5 * 1024 * 1024;
+
+    function handleFile(file) {
+        if (file.size > MAX_SIZE) {
+            alert("File is too large. Maximum allowed size is 5 MB.");
+            fileInput.value = "";
+            fileName.textContent = "No file chosen";
+            fileButton.textContent = "Browse Files";
+            uploadButton.style.display = "none";
+            return false;
+        }
+        fileName.textContent = file.name;
+        fileButton.textContent = "Change File";
+        uploadButton.style.display = "block";
+        return true;
+    }
+
+    fileInput.addEventListener("change", () => {
+        if (fileInput.files.length) {
+            handleFile(fileInput.files[0]);
+        } else {
+            fileName.textContent = "No file chosen";
+            fileButton.textContent = "Browse Files";
+            uploadButton.style.display = "none";
+        }
+    });
+
+    form.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        form.classList.add("dragover");
+    });
+
+    form.addEventListener("dragleave", () => {
+        form.classList.remove("dragover");
+    });
+
+    form.addEventListener("drop", (e) => {
+        e.preventDefault();
+        form.classList.remove("dragover");
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0 && handleFile(files[0])) {
+            fileInput.files = files;
+        }
+    });
+
+    document.querySelectorAll(".trash").forEach(trash => {
+        trash.addEventListener("click", () => {
+            const fileId = trash.getAttribute("data-file-id");
+            fetch(`/delete/file/${fileId}`, {
+                method: "GET"
+            }).then(response => {
+                if (response.ok) {
+                    trash.parentElement.remove();
+                } else {
+                    alert("Failed to delete file.");
+                }
+            });
+        });
+    });
+
+    document.querySelectorAll(".folderTrash").forEach(trash => {
+        trash.addEventListener("click", () => {
+            const folderId = trash.getAttribute("data-file-id");
+            fetch(`/delete/folder/${folderId}`, {
+                method: "GET"
+            }).then(response => {
+                if (response.ok) {
+                    trash.parentElement.remove();
+                } else {
+                    alert("Failed to delete folder.");
+                }
+            });
+        });
+    });
+
+    document.querySelectorAll(".edit").forEach(edit => {
+        edit.addEventListener("click", () => {
+            const folderId = edit.getAttribute("data-file-id");
+            window.location.href = `/update-folder/${folderId}`;
+        });
+    });
+
+</script>

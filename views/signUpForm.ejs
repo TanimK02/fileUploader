@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/signUp.css">
+    <%- include('notoSans') %>
+</head>
+<% function errorClassFor(param) { if (!locals.errors) return '' ; const e=errors.find(x=> x.path ===
+    param.trim());
+    return e ? `error` : '';
+    }
+    %>
+    <% function errorText(param, initialVal) { if (!locals.errors) return `${initialVal}` ; const e=errors.find(x=>
+        x.path ===
+        param);
+        return e ? `${e.msg}` : `${initialVal}`;
+        }
+        %>
+
+        <body>
+
+            <div class="container">
+                <p class="brand">Uploader</p>
+                <h1>Create Your Account</h1>
+                <form action="/users/sign-up" method="POST">
+                    <div class="inputContainer">
+                        <p>Username</p>
+                        <div class="inputWrapper">
+                            <input type="text" name="username" placeholder=" " required>
+                            <span class="<%= errorClassFor(" username") %>">
+                                <%= errorText("username", "Enter your Username" ) %>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div class="inputContainer">
+                        <p>Password</p>
+                        <div class="inputWrapper">
+                            <input type="password" name="password" placeholder=" " required>
+                            <span class="<%= errorClassFor(" password") %>">
+                                <%= errorText("password", "Enter your Password" ) %>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="buttonDiv">
+                        <button class="signUpButton" type="submit">Sign Up</button>
+                    </div>
+                    <p class="footnote">Already have an account? <a href="/users/login">Log In</a></p>
+                </form>
+            </div>
+        </body>
+
+</html>
+
+<script>
+    let textContent = ["Enter your username", "Enter your password"];
+    document.querySelectorAll("span").forEach((element, index) => {
+        console.log(element.parentElement);
+        element.parentElement.onclick = () => {
+            element.textContent = textContent[index];
+            element.classList.remove('error');
+        }
+    });
+</script>

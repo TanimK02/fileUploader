@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Folder</title>
+    <%- include('notoSans') %>
+        <link rel="stylesheet" href="/index.css">
+        <link rel="stylesheet" href="/home.css">
+</head>
+
+<body>
+    <nav>
+        <a href="/">
+            <h1>Uploader</h1>
+        </a>
+        <a href="/users/logout">
+            <p class="logOut">Log Out</p>
+        </a>
+    </nav>
+    <div class="container formContainer">
+        <form action="/update-folder/<%= folderId %>" method="post">
+            <div class="folderPic" style="margin-top: 1rem; height: 50px; width: 50px;"></div>
+            <label class="folderNameLabel" for="folderNameInput">Folder Name</label>
+            <input class="folderInput" id="folderNameInput" type="text" name="name" required />
+            <button id="updateFolderButton" type="submit">Update Folder</button>
+        </form>
+    </div>
+</body>
+
+</html>

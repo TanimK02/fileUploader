@@ -1,0 +1,121 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 30%;
+    padding: 2rem 0;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+h1 {
+    font-size: 1.7rem;
+    margin-bottom: 1.25rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.inputContainer {
+    width: 90%;
+    padding: 0 1rem;
+}
+
+.inputContainer p {
+    margin-bottom: 5px;
+}
+
+.inputWrapper {
+    width: 100%;
+    margin-bottom: 1rem;
+    border: 1px solid #f0f2f4;
+    border-radius: 10px;
+    position: relative;
+    max-width: 700px;
+
+}
+
+.inputWrapper input {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 20px 50px 10px 10px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.inputWrapper span {
+    color: rgba(39, 40, 41, 0.6);
+    font-size: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+
+.inputWrapper input:focus~span,
+.inputWrapper input:not(:placeholder-shown)~span {
+    transform: translateY(-33px);
+    font-size: 0.7rem;
+}
+
+.inputWrapper .error {
+    color: red;
+}
+
+.buttonDiv {
+    width: 90%;
+    padding: 0 1rem;
+}
+
+.signUpButton {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: white;
+    background-color: #4A90E2;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.signUpButton:hover {
+    background-color: #4a91e2dd;
+    cursor: pointer;
+}
+
+.footnote {
+    font-size: 0.85rem;
+    color: rgba(39, 40, 41, 0.6);
+}
+
+.footnote a {
+    color: #4A90E2;
+    text-decoration: none;
+}
+
+.footnote a:hover {
+    color: #4a91e2dd;
+}
