@@ -1,3 +1,4 @@
+import "dotenv/config";
 // Load environment variables from .env during app startup
 import express from "express";
 import expressSession from 'express-session';
